@@ -1,5 +1,4 @@
 # Paytm ResolveX: Autonomous AI Teammate
-*Smart India Hackathon 2026 — Track 3: Autonomous AI Teammate*
 
 An enterprise FinTech digital employee that investigates payment and refund discrepancies across core banking ledgers, takes permitted corrective actions, verifies real system state changes, and escalates complex disputes to human teams with zero context loss.
 
