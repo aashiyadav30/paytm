@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Next.js build
+.next/
+out/
+
+# Production
+build/
+dist/
+
+# Environment variables
+.env
+.env*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+.DS_Store
+*.pem
+
+# IDE
+.vscode/
+.idea/
+
+# Database (generated dev DB, seedable via npm run seed)
+# prisma/dev.db

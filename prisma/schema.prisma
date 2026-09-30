@@ -1,0 +1,56 @@
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        String   @id
+  name      String
+  phone     String
+  upiId     String
+  bankName  String
+  accountNo String
+  balance   Float    @default(0.0)
+  role      String   @default("USER") // "PAYER", "PAYEE", "ADMIN"
+  createdAt DateTime @default(now())
+}
+
+model Transaction {
+  id               String   @id // e.g. TXN_84920
+  utr              String   // Bank Reference Number
+  amount           Float
+  senderId         String
+  receiverId       String
+  type             String   // "P2P", "P2M", "REFUND"
+  pgStatus         String   // "SUCCESS", "PENDING", "FAILED"
+  bankSwitchStatus String   // "TIMEOUT", "SUCCESS", "PENDING", "CONFLICT"
+  ledgerStatus     String   // "UNCREDITED", "CREDITED", "HELD_IN_ESCROW"
+  arnCode          String?  // For refunds
+  issueDescription String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model EscalatedTicket {
+  id                String   @id @default(uuid())
+  txnId             String
+  amount            Float
+  priority          String   @default("HIGH")
+  reason            String
+  aiSummary         String
+  recommendedAction String
+  status            String   @default("OPEN") // "OPEN", "RESOLVED"
+  createdAt         DateTime @default(now())
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  step      String
+  action    String
+  details   String
+  timestamp DateTime @default(now())
+}
